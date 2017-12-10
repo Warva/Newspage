@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Hallintapaneeli</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        
+        <h1>Lisää uutinen</h1>
+        
+        <form th:action="@{/manage}" method="POST">
+            <p>Otsikko: <input type="text" name="title"></input></p>
+            <p>Ingressi: <input type="text" name="ingres"></input></p>
+            <p>Teksti: <input type="text" name="text"></input></p>
+            <p>Kuva: <input type="file" name="picture"></input></p>
+            <input type="submit" value="Add"></input>
+        </form>
+    </body>
+</html>

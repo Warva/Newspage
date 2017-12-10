@@ -6,31 +6,28 @@
 package wad.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import wad.repository.NewsItemRepository;
 
 /**
  *
  * @author Warva
  */
+
 @Controller
-public class NewsController {
+public class NewsItemController {
     
     @Autowired
     private NewsItemRepository newsItemRepository;
     
-    @GetMapping("/")
-    public String list(Model model) {
+    @GetMapping("/newsitem/{id}")
+    public String getNews(@PathVariable Long id, Model model) {
         
-        Pageable pageable = PageRequest.of(0, 5, Sort.Direction.ASC, "time");
-        model.addAttribute("news", newsItemRepository.findAll(pageable));
         
-        return "index";
+        
+        return "newsitem";
     }
-    
 }

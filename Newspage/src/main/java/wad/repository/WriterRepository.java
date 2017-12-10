@@ -6,11 +6,12 @@
 package wad.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import wad.domain.Writer;
 
 /**
  *
  * @author Warva
  */
-public interface NewsRepository extends JpaRepository{
+public interface WriterRepository extends JpaRepository<Writer, Long>{
     
 }

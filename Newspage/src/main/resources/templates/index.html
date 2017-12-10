@@ -4,13 +4,30 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Uutissivusto</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
-        <div>TODO write content</div>
+        
+        <ul>
+            <li><a href="/">Etusivu</a></li>
+            <li><a href="manage">Hallintapaneeli</a></li>
+        </ul>
+        
+        <h1>Uusimmat uutiset</h1>
+        
+        <ul>
+            <li th:each="newsItem : ${news}">
+                <a th:href="@{/newsItem/{id}(id=${newsItem.id})}">
+                    <p th:text="${newsItem.title}">title</p>
+                </a>
+                <p th:text="${newsItem.ingres}">ingres</p>
+            </li>
+        </ul>
+        
     </body>
 </html>
