@@ -69,13 +69,19 @@ public class ManageController {
         
         for(i=0; i<writer.size(); ++i) {
             Writer writer1 = new Writer();
-            writer1.setName(writer.get(i)); 
+            writer1.setName(writer.get(i));
+            writer1.setNews(newsItem);
+            writerRepository.save(writer1);
+            
             newsItem.setWriter(writer1);
         }
         
         for(i=0; i<category.size(); ++i) {
             Category category1 = new Category();
-            category1.setName(category.get(i)); 
+            category1.setName(category.get(i));
+            category1.setNews(newsItem);
+            categoryRepository.save(category1);
+            
             newsItem.setCategory(category1);
         }
 

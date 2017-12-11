@@ -6,6 +6,7 @@
 package wad.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -49,6 +50,24 @@ public class NewsItem extends AbstractPersistable<Long>{
     
     public void setCategory(Category category) {
         this.categorys.add(category);
+    }
+    
+    public List<Writer> getWriters() {
+        
+        if (this.writers == null) {
+            this.writers = new ArrayList<>();
+        }
+        
+        return this.writers;
+    }
+    
+    public List<Category> getCategorys() {
+        
+        if (this.categorys == null) {
+            this.categorys = new ArrayList<>();
+        }
+        
+        return this.categorys;
     }
     
 }
