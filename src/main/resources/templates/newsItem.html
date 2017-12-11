@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${newsItem.title}">title</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        
+        <menu>
+            
+            <ul>
+                <li><a href="/">Etusivu</a></li>
+                <li><a href="manage">Hallintapaneeli</a></li>
+            </ul>
+            
+            <ul>
+                <li th:each="category : ${categorys}">
+                <p th:text="${category.name}">category</p>
+                </li>
+            </ul>
+            
+        </menu>
+        
+        <div>
+        <h1 th:text="${newsItem.title}">title</h1>
+        
+        <p th:text="${newsItem.time}">time</p>
+        
+        <p><img th:src="@{/newsItem/{id}/picture}"/>picture</p>
+        
+        <p th:text="${newsItem.ingres}">ingres</p>
+        
+        <p th:text="${newsItem.text}">text</p>
+        
+        
+        <h3>Uusimmat uutiset</h3>
+        <ul>
+            <li th:each="newsItem : ${latest}">
+                <a th:href="@{/newsItem/{id}(id=${newsItem.id})}">
+                    <p th:text="${newsItem.title}">title</p>
+                </a>
+                <p th:text="${newsItem.ingres}">ingres</p>
+                <p><img th:src="@{/newsItem/{id}/picture}"/>picture</p>   
+            </li>
+        </ul>
+        
+        
+        <h3>Luetuimmat uutiset</h3>
+        <ul>
+            <li th:each="newsItem : ${read}">
+                <a th:href="@{/newsItem/{id}(id=${newsItem.id})}">
+                    <p th:text="${newsItem.title}">title</p>
+                </a>
+                <p th:text="${newsItem.time}">time</p>
+
+            </li>
+        </ul>
+        </div>
+    </body>
+</html>

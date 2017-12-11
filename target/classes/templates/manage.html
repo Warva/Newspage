@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Hallintapaneeli</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        
+        <menu>
+            
+            <ul>
+                <li><a href="/">Etusivu</a></li>
+                <li><a href="manage">Hallintapaneeli</a></li>
+            </ul>
+            
+            <ul>
+                <li th:each="category : ${categorys}">
+                <p th:text="${category.name}">category</p>
+                </li>
+            </ul>
+            
+        </menu>
+        
+        <div>
+        <h1>Lisää uutinen</h1>
+        
+        <form th:action="@{/manage}" method="POST" enctype="multipart/form-data">
+            <p>Otsikko: <input type="text" name="title" /></p>
+            <p>Ingressi: <textarea name="ingres" rows="10" cols="30"></textarea></p>
+            <p>Teksti: <textarea name="text" rows="10" cols="30"></textarea></p>
+            <p>Kuva: <input type="file" name="picture" /></p>
+            
+            <p>Kirjoittaja</p>
+            <ul>
+                <li th:each="writer : ${writers}">
+                    <input type="checkbox" th:name="writer" th:value="${writer.name}"></input>
+                    <label th:text="${writer.name}">writer</label>
+                </li>
+            </ul>
+            
+            <p>Kategoria</p>
+            <ul>
+                <li th:each="category : ${categorys}">
+                    <input type="checkbox" th:name="category" th:value="${category.name}"></input>
+                    <label th:text="${category.name}">category</label>
+                </li>
+            </ul>
+
+            <input type="submit" value="Lisää" />
+        </form>
+        
+        <h1>Muokkaa uutista</h1>
+        
+        <form>
+            <select th:each="newsItem : ${news}">
+                <option th:text="${newsItem.title}">title</option>
+            </select>
+            <input type="button" onclick="edite();" value="Editoi" />
+        </form>
+        
+        <form th:action="@{/manage}" method="PUT">
+            
+            
+            <input type="submit" value="Editoi" />
+        </form>
+        <script src="code.js"></script>
+        </div>
+    </body>
+</html>
